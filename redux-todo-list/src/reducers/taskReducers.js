@@ -18,6 +18,18 @@ export default function taskReducer (state = initialState, action) {
                 ...state,
                 taskItem : state.taskItem.filter((task) => task!==action.payload)
             }
+        case 'EDIT_TASK':
+            console.log(action.payload, "edit") 
+            return {
+                ...state,
+                taskItem: state.taskItem.map((task) => {
+                        if(task === action.payload.task) {
+                            task = action.payload.newTask
+                        }
+                        return task
+                })
+
+            }
     }
     return state
 }
