@@ -1,4 +1,3 @@
-import logo from './logo.svg';
 import './App.css';
 import { useEffect } from 'react';
 import { setCurrentUser } from './store/user/user.action';
@@ -17,7 +16,7 @@ function App() {
     <div className="App">
 
     React Parent 
-    
+
     <NewComponent />
          </div>
   );
