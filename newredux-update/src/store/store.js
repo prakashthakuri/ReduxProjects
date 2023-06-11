@@ -14,9 +14,18 @@ const persistConfig = {
 }
 const persistedReducer = persistReducer(persistConfig, rootReducer);
 
-const middleWares = [logger]
+const middleWares = [process.env.NODE_ENV !== 'production' && logger].filter(Boolean) 
+// filter.Boolean filters out the boolean value into an empty object rather than rendering false
 
-const composeEnhancers = compose(applyMiddleware(...middleWares))
+
+// this code implies that if the project is not in production and there is redux devtools extension you can use that 
+//  else if the project is not in production just use the regular compose.
+//  this is necessary because you dont want regular user to see your redux flow
+
+const composeEnhancer = (process.env.NODE_ENV !== 'production' && window && window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__) || compose
+
+
+const composeEnhancers = composeEnhancer(applyMiddleware(...middleWares))
 
 export const store = createStore(persistedReducer, undefined, composeEnhancers)
 
