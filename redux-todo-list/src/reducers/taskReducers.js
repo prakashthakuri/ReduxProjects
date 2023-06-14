@@ -10,6 +10,7 @@ export default function taskReducer (state = initialState, action) {
     {
         case 'ADD_TASK' :
             return {
+                
                 ...state,
                 taskItem: [...state.taskItem, action.payload]
             }
