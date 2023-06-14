@@ -3,6 +3,7 @@ import logger from 'redux-logger'
 import { rootReducer } from './root-reducer'
 import { persistReducer,persistStore } from 'redux-persist'
 import storage from 'redux-persist/lib/storage'
+import thunk from 'redux-thunk'
 
 // you need a rootReducer to generate a the store
 // logger allows us to see what store looks like before it dispatches
@@ -14,7 +15,7 @@ const persistConfig = {
 }
 const persistedReducer = persistReducer(persistConfig, rootReducer);
 
-const middleWares = [process.env.NODE_ENV !== 'production' && logger].filter(Boolean) 
+const middleWares = [process.env.NODE_ENV !== 'production' && logger, thunk].filter(Boolean) 
 // filter.Boolean filters out the boolean value into an empty object rather than rendering false
 
 
